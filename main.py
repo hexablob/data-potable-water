@@ -27,7 +27,7 @@ def load_and_process_data(year_range):
     df_combined = pd.DataFrame()
     for year in year_range:
         print(f'Processing year {year}')
-        for file_path in glob.glob(f'./DIS_PLV_{year}_*.txt'):
+        for file_path in glob.glob(f'./dataset/DIS_PLV_{year}_*.txt'):
             df = pd.read_csv(file_path, delimiter=',')
             df_yearly = process_dataframe(df)
             df_combined = pd.concat([df_combined, df_yearly])
