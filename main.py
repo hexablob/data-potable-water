@@ -110,7 +110,7 @@ def create_choropleth(df, gdf):
     </head>
     <body>
 
-    <h1>Occurrences de non-conformité de l'eau en Corse</h1>
+    <h1>Occurrences de non-conformité de l'eau en Corse (2016-2023)</h1>
    
     """
 
