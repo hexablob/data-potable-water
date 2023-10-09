@@ -8,6 +8,7 @@ from unidecode import unidecode
 import geopandas as gpd
 from dotenv import load_dotenv
 import os 
+import numpy as np
 
 load_dotenv()
 px.set_mapbox_access_token(os.getenv("MAPBOX_TOKEN"))
@@ -47,9 +48,16 @@ def create_heatmap(df):
     plt.savefig('heatmap.png', dpi=300, bbox_inches='tight')
 
 def create_barplot(df):
-    plt.figure(figsize=(8, 44))
+    plt.figure(figsize=(8, 45))
     commune_counts = df.groupby('nomcommuneprinc').agg({'count': 'sum'}).reset_index().sort_values('count', ascending=False)
-    ax2 = sns.barplot(x='count', y='nomcommuneprinc', data=commune_counts)
+    n_bars = len(commune_counts)
+    palette = plt.cm.rainbow(np.linspace(1, 0, n_bars))
+
+    # Utilisation de barplot de Matplotlib
+    plt.barh(commune_counts['nomcommuneprinc'], commune_counts['count'], color=palette)
+    ax2 = plt.gca()
+    ax2.invert_yaxis()
+    ax2.margins(y=0)
     for i, v in enumerate(commune_counts['count']):
         ax2.text(v + 3, i + .25, str(v), color='black', ha='center', va='center', fontsize=7)
     plt.title("Eau d\'alimentation non-conforme aux limites de qualité par commune depuis 2016.")
