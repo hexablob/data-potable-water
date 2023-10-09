@@ -45,7 +45,7 @@ def create_heatmap(df):
     plt.ylabel('Mois')
     plt.xticks(rotation=45)
     plt.yticks(ticks=range(0, 12), labels=['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'], rotation=0)
-    plt.savefig('heatmap.png', dpi=300, bbox_inches='tight')
+    plt.show()
 
 def create_barplot(df):
     plt.figure(figsize=(8, 45))
@@ -101,7 +101,7 @@ def create_choropleth(df, gdf):
         )
     )
 
-    fig.update_layout(title='Occurrences de non-conformité de l\'eau en Corse')
+    fig.update_layout(title='Occurrences de non-conformité de l\'eau en Corse (2016-2023)')
     html_code = """
     <!DOCTYPE html>
     <html>
